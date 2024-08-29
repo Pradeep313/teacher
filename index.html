@@ -203,14 +203,15 @@
                 console.log(length);
                 let final_dta_data=" ";
                 let i=1;
+                let data_list=[];
                 for ( i = 1; i < length + 1; i++) {
                     //let NewBoxBlogger = document.createElement("div");
                     //let space = document.createElement("br");
                     //NewBoxBlogger.id = "box" + i;
                     //NewBoxBlogger.className = "box-blogger";
                     //blogger_name.append(NewBoxBlogger);
-                    console.log(datas.table.rows[i - 1].c[0].v);
-                    let data_list=[];
+                    //console.log(datas.table.rows[i - 1].c[0].v);
+                    
                     data_list.push(datas.table.rows[i - 1].c[0].v);
                     
                     final_dta_data="<option value="+ i+">"+datas.table.rows[i - 1].c[0].v+"</option>" +"<br>"+final_dta_data ;
