@@ -3,6 +3,102 @@
 <head>
     <title>Teacher Time Table</title>
     <style>
+        @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            --h: 212deg;
+            --l: 43%;
+            --brandColor: hsl(var(--h), 71%, var(--l));
+            font-family: Montserrat, sans-serif;
+            margin: 0;
+            background-color: whitesmoke;
+        }
+
+        p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        ol {
+            list-style: none;
+            counter-reset: list;
+            padding: 0 1rem;
+        }
+
+        li {
+            --stop: calc(100% / var(--length) * var(--i));
+            --l: 62%;
+            --l2: 88%;
+            --h: calc((var(--i) - 1) * (180 / var(--length)));
+            --c1: hsl(var(--h), 71%, var(--l));
+            --c2: hsl(var(--h), 71%, var(--l2));
+
+            position: relative;
+            counter-increment: list;
+            max-width: 45rem;
+            height: 150px;
+            margin: 2rem auto;
+            padding: 2rem 1rem 1rem;
+            box-shadow: 0.1rem 0.1rem 1.5rem rgba(0, 0, 0, 0.3);
+            border-radius: 0.25rem;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        li::before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(to right, var(--c1) var(--stop), var(--c2) var(--stop));
+        }
+
+        h3 {
+            display: flex;
+            align-items: baseline;
+            margin: 0 0 1rem;
+            color: rgb(70 70 70);
+        }
+
+        h3::before {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 0 0 auto;
+            margin-right: 1rem;
+            width: 3rem;
+            height: 3rem;
+            content: counter(list);
+            padding: 1rem;
+            border-radius: 50%;
+            background-color: var(--c1);
+            color: white;
+        }
+
+        @media (min-width: 40em) {
+            li {
+                margin: 3rem auto;
+                padding: 3rem 2rem 2rem;
+            }
+
+            h3 {
+                font-size: 2.25rem;
+                margin: 0 0 2rem;
+            }
+
+            h3::before {
+                margin-right: 1.5rem;
+            }
+        }
+    </style>
+    <style>
         .pro {
 
 
@@ -20,9 +116,29 @@
 </head>
 
 <body>
+    <ol style="--length: 5;display:block" role="list" id="teacher_data" class="list_d_1">
+        <!-- <li style=" --i: 1">
+        <h3 id="data-1" onclick="viwer(this)">hello1</h3>
+
+
+        </li>
+        <li style="--i: 3">
+            <h3 id="data-1 " onclick="viwer(this)">hello2</h3>
+
+
+        </li>
+        <li style="--i: 3">
+            <h3 id="data-1" onclick="viwer(this)">hello3</h3>
+
+
+
+        </li> -->
+
+
+    </ol>
     <!-- <H1><FONT COLOR="purple"><CENTER><u>COLLEGE TIME TABLE</u></FONT></H1>
 <br><br><br> -->
-    <form>
+    <form style="display: none;" class="noob">
         <select id="view" onchange="views()" style="
 /*             position: absolute;left: 50%; */
                 height: 2%;
@@ -45,9 +161,11 @@
         </select>
     </form>
     <br><br><br><br><br><br>
+  
+
 
     <!--     <button onclick="view()">Click me</button> -->
-    <div class="pro">
+    <div class="pro" style="display: none;">
         <table border="2" cellspacing="3" align="center" bordercolor="brown">
             <tr>
                 <td align="center">
@@ -181,6 +299,10 @@
 
     </div>
     <script>
+
+        function hellos() {
+            console.log("hi");
+        };
         let SHEET_IDB = "1o2-dh2Shhj9wECj7sU57FJwXuiuvcI7V-eKpHyFdIxw";
         let SHEET_TITLE = "Sheet1";
         let SHEET_RANGEB = "B3:B10000";
@@ -199,6 +321,7 @@
                 let datas = JSON.parse(rep.substr(47).slice(0, -2));
 
                 let blogger_name = document.getElementById("view");
+                let teacher_data = document.getElementById("teacher_data");
                 let length = datas.table.rows.length;
                 console.log(length);
 
@@ -248,10 +371,19 @@
                 console.log(duplicate_elements);
                 console.log(duplicate_elements.length);
                 let final_dta_data = "";
+                let te_dta_d = "";
+                length_d = duplicate_elements.length
+
                 for (let i = 0; i < duplicate_elements.length; i++) {
-                    final_dta_data = "<option value=" + i + ">" + duplicate_elements[duplicate_elements.length-i -1] + "</option>"  + final_dta_data;
+                    length = length - 1;
+
+                    final_dta_data = "<option value=" + i + ">" + duplicate_elements[duplicate_elements.length - i - 1] + "</option>" + final_dta_data;
+                    te_dta_d = "<li style=" + '"--i:' + length + '" onclick="viwer(this)' + '"' + '><h3>' + duplicate_elements[duplicate_elements.length - i - 1] + "</h3></li>" + te_dta_d
 
                 };
+
+                teacher_data.innerHTML = te_dta_d;
+                console.log(te_dta_d);
 
 
                 blogger_name.innerHTML = '<option value="' + i + 1 + '" selected="selected">Select Teacher Name</option>' + final_dta_data;
@@ -259,7 +391,37 @@
                 console.log(final_dta_data);
 
             });
+        
 
+        function viwer(e) {
+            //var noobs = document.getElementsByClassName("noob");
+            var pros = document.getElementsByClassName("pro");
+            var teacherdatas = document.getElementsByClassName("list_d_1");
+            document.querySelector(".pro").style.display="block";
+            document.querySelector(".list_d_1").style.display="none";
+            document.querySelector(".noob").style.display="block";
+            
+
+
+
+
+            console.log(e.innerText);
+            text_data = e.innerText;
+            //noobs.style.display="block";
+            showview(text_data);
+
+            
+           
+            //noobs.style.display="block";
+            //pros.style.display="block";
+            //teacherdatas.style.display="none";
+
+
+
+
+
+
+        };
 
 
         function views() {
@@ -267,6 +429,13 @@
             var value = sheetidn.value;
             var sheetidn1 = sheetidn.options[sheetidn.selectedIndex].text;
             console.log(sheetidn1);
+            showview(sheetidn1);
+
+
+        };
+
+        function showview(sheetidn1) {
+
             let SHEET_IDN = "1PiE7LH9HY3Q8GFseLHjEYVw6zWlr7wbhMgQj-bTv82w";
             //let SHEET_TITLEE = "B.tech4";
             let SHEET_RANGEN = "A1:I6";
@@ -358,8 +527,8 @@
                     box56.innerHTML = data_news.table.rows[5].c[6].v;
                     box57.innerHTML = data_news.table.rows[5].c[7].v;
                     box58.innerHTML = data_news.table.rows[5].c[8].v;
-                    
-                   
+
+
 
 
 
@@ -371,7 +540,7 @@
 
 
         }
-
+        ;
 
     </script>
 </body>
