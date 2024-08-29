@@ -231,15 +231,22 @@
                     }
                 };
                 //console.log(data_list);
-                let duplicate_elements = []; 
-                for (let i = 0; i < data_list.length; i++) {
-                    for (let j = i + 1; j < data_list.length; j++) {
-                        if (data_list[i] === data_list[j] && !duplicate_elements.includes(data_list[i])) {
-                            duplicate_elements.push(data_list[i]);
+                function remove_items(arr){
+                    let item_each_data ={};
+        
+                    arr.forEach(function(i){
+                        if (!item_each_data[i]){
+                            item_each_data[i]=true;
                         }
-                    }
+                    });
+                    return Object.keys(item_each_data);
+        
+        
                 }
-                console.log(duplicate_elements);             
+                let duplicate_elements = []; 
+                duplicate_elements=remove_items(data_list);
+                console.log(duplicate_elements);
+                            
                 
                 blogger_name.innerHTML =final_dta_data + '<option value="'+i+1+'" selected="selected">Select Teacher Name</option>';
                        // console.log(final_dta_data);
