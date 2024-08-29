@@ -210,8 +210,11 @@
                     //NewBoxBlogger.className = "box-blogger";
                     //blogger_name.append(NewBoxBlogger);
                     console.log(datas.table.rows[i - 1].c[0].v);
+                    let data_list=[];
+                    data_list.push(datas.table.rows[i - 1].c[0].v);
+                    
                     final_dta_data="<option value="+ i+">"+datas.table.rows[i - 1].c[0].v+"</option>" +"<br>"+final_dta_data ;
-                    console.log(final_dta_data);
+                    //console.log(final_dta_data);
                     
                     //let final_dta_d1= final_dta_d1+"<br>"+ final_dta_data;
                     
@@ -226,6 +229,7 @@
                         break;
                     }
                 };
+                console.log(data_list);
                 blogger_name.innerHTML =final_dta_data + '<option value="'+i+1+'" selected="selected">Select Teacher Name</option>';
                        // console.log(final_dta_data);
             });
