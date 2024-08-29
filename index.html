@@ -31,7 +31,7 @@
     text-align: center;
             background-color:gray;
             ">
-<!--             <option value="1">B.tech4</option>
+            <!--             <option value="1">B.tech4</option>
             <option value="2" selected="selected">B.tec3</option>
             <option value="3">B.tec1</option>
             <option value="4">B.tec</option>
@@ -45,30 +45,30 @@
         </select>
     </form>
     <br><br><br><br><br><br>
-    
-<!--     <button onclick="view()">Click me</button> -->
+
+    <!--     <button onclick="view()">Click me</button> -->
     <div class="pro">
         <table border="2" cellspacing="3" align="center" bordercolor="brown">
             <tr>
                 <td align="center">
-               <td>
-                    <center>1ST<br>9:00-9:50</center> 
+                <td>
+                    <center>1ST<br>9:00-9:50</center>
                 </td>
                 <td>
-                    <center>2ND<br>9:50-10:40</center> 
+                    <center>2ND<br>9:50-10:40</center>
                 </td>
                 <td>
-                    <center>3RD<br>10:40-11:30</center> 
+                    <center>3RD<br>10:40-11:30</center>
                 </td>
                 <td>
                     <center>4TH <br>11:30-12:30</center>
                 </td>
                 <td>12:30-1:30</td>
                 <td>
-                    <center>5TH<br>1:30-2:20</center> 
+                    <center>5TH<br>1:30-2:20</center>
                 </td>
                 <td>
-                    <center>6Th<br>2:20-3:10</center> 
+                    <center>6Th<br>2:20-3:10</center>
                 </td>
                 <td>
                     <center>7TH <br>3:10-4:00</center>
@@ -201,62 +201,63 @@
                 let blogger_name = document.getElementById("view");
                 let length = datas.table.rows.length;
                 console.log(length);
-                
-                let i=1;
-                let data_list=[];
-                for ( i = 1; i < length + 1; i++) {
+
+                let i = 1;
+                let data_list = [];
+                for (i = 1; i < length + 1; i++) {
                     //let NewBoxBlogger = document.createElement("div");
                     //let space = document.createElement("br");
                     //NewBoxBlogger.id = "box" + i;
                     //NewBoxBlogger.className = "box-blogger";
                     //blogger_name.append(NewBoxBlogger);
                     //console.log(datas.table.rows[i - 1].c[0].v);
-                    
+
                     data_list.push(datas.table.rows[i - 1].c[0].v);
-                    
-                   // final_dta_data="<option value="+ i+">"+datas.table.rows[i - 1].c[0].v+"</option>" +"<br>"+final_dta_data ;
+
+                    // final_dta_data="<option value="+ i+">"+datas.table.rows[i - 1].c[0].v+"</option>" +"<br>"+final_dta_data ;
                     //console.log(final_dta_data);
-                    
+
                     //let final_dta_d1= final_dta_d1+"<br>"+ final_dta_data;
-                    
+
 
                     //blogger_name.innerHTML =
-                      //  "<div class=" + "news_blog" + " > <span class=" + "hedingnews" + ">" + data.table.rows[i - 1].c[0].v + "</span> <span class=" + "arrownews" + ">" + data.table.rows[i - 1].c[1].v + "</span> <br>";
+                    //  "<div class=" + "news_blog" + " > <span class=" + "hedingnews" + ">" + data.table.rows[i - 1].c[0].v + "</span> <span class=" + "arrownews" + ">" + data.table.rows[i - 1].c[1].v + "</span> <br>";
                     //    "<option value="+i+">"+datas.table.rows[i - 1].c[0].v+"</option>";
                     if (
                         datas.table.rows[i - 1].c[0].v == " "
                     ) {
-                        
+
                         break;
                     }
                 };
                 //console.log(data_list);
-                function remove_items(arr){
-                    let item_each_data ={};
-        
-                    arr.forEach(function(i){
-                        if (!item_each_data[i]){
-                            item_each_data[i]=true;
+                function remove_items(arr) {
+                    let item_each_data = {};
+
+                    arr.forEach(function (i) {
+                        if (!item_each_data[i]) {
+                            item_each_data[i] = true;
                         }
                     });
                     return Object.keys(item_each_data);
-        
-        
+
+
                 }
-                let duplicate_elements = []; 
-                duplicate_elements=remove_items(data_list);
+                let duplicate_elements = [];
+                duplicate_elements = remove_items(data_list);
                 console.log(duplicate_elements);
-                let final_dta_data=" ";
-                for(let i=duplicate_elements.length;i<1;i--){
-                    final_dta_data="<option value="+ i+">"+duplicate_elements[i]+"</option>" +"<br>"+final_dta_data ;
+                console.log(duplicate_elements.length);
+                let final_dta_data = " ";
+                for (let i = 1; i < duplicate_elements.length; i++) {
+                    final_dta_data = "<option value=" + i + ">" + duplicate_elements[i] + "</option>" + "<br>" + final_dta_data;
 
                 };
-                            
-                
-                blogger_name.innerHTML ='<option value="'+i+1+'" selected="selected">Select Teacher Name</option>' + final_dta_data ;
-                
-                 console.log(final_dta_data);
-                
+
+
+                blogger_name.innerHTML = '<option value="' + i + 1 + '" selected="selected">Select Teacher Name</option>' + final_dta_data;
+
+                console.log(final_dta_data);
+
             });
 
 
@@ -357,7 +358,7 @@
                     box56.innerHTML = data_news.table.rows[5].c[6].v;
                     box57.innerHTML = data_news.table.rows[5].c[7].v;
                     box58.innerHTML = data_news.table.rows[5].c[8].v;
-                   // box58.css({'background-color':'red'});
+                    // box58.css({'background-color':'red'});
                     box58.attr("style", "background-color:orange;");
 
 
@@ -375,4 +376,4 @@
     </script>
 </body>
 
-                                         </html>
+</html>
